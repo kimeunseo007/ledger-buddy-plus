@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye, Download } from "lucide-react";
+import { Eye, Download, CreditCard } from "lucide-react";
 
 const transactions = [
   {
@@ -11,7 +11,9 @@ const transactions = [
     amount: 450000,
     category: "임대료",
     status: "승인",
-    taxDeductible: true
+    taxDeductible: true,
+    cardName: "법인카드 01",
+    cardNumber: "**** **** **** 1234"
   },
   {
     id: "2", 
@@ -20,7 +22,9 @@ const transactions = [
     amount: 85000,
     category: "회의비",
     status: "검토중",
-    taxDeductible: true
+    taxDeductible: true,
+    cardName: "법인카드 01",
+    cardNumber: "**** **** **** 1234"
   },
   {
     id: "3",
@@ -29,7 +33,9 @@ const transactions = [
     amount: 120000,
     category: "차량운반비",
     status: "승인",
-    taxDeductible: true
+    taxDeductible: true,
+    cardName: "법인카드 02",
+    cardNumber: "**** **** **** 5678"
   },
   {
     id: "4",
@@ -38,7 +44,9 @@ const transactions = [
     amount: 79000,
     category: "소프트웨어사용료", 
     status: "승인",
-    taxDeductible: true
+    taxDeductible: true,
+    cardName: "법인카드 01",
+    cardNumber: "**** **** **** 1234"
   },
   {
     id: "5",
@@ -47,7 +55,9 @@ const transactions = [
     amount: 15000,
     category: "기타",
     status: "반려",
-    taxDeductible: false
+    taxDeductible: false,
+    cardName: "법인카드 02",
+    cardNumber: "**** **** **** 5678"
   }
 ];
 
@@ -69,8 +79,8 @@ export function RecentTransactions() {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
-          <CardTitle>최근 거래내역</CardTitle>
-          <CardDescription>자동 분류된 거래 내역을 확인하세요</CardDescription>
+          <CardTitle>카드별 거래내역</CardTitle>
+          <CardDescription>법인카드별 최근 거래 기록입니다</CardDescription>
         </div>
         <Button variant="outline" size="sm">
           <Download className="w-4 h-4 mr-2" />
@@ -88,6 +98,11 @@ export function RecentTransactions() {
                 <div className="flex items-center gap-3 mb-2">
                   <h4 className="font-medium text-foreground">{transaction.merchant}</h4>
                   {getStatusBadge(transaction.status)}
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
+                  <CreditCard className="w-3 h-3" />
+                  <span>{transaction.cardName}</span>
+                  <span>({transaction.cardNumber})</span>
                 </div>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <span>{transaction.date}</span>
